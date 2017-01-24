@@ -1,0 +1,54 @@
+﻿<div ng-controller="ReportsController as reportsCtrl">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                {{reportsCtrl.languageStrings.lbl_Reports}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 only-search">
+            <vm-combo-box class="select-comboBox arrow-down" id="reportsCombo" combo-control="reportsCtrl.reports_combo_box" data-combo-box-data="reportsCtrl.reportListData" settings="reportsCtrl.reportListSettings" on-select="reportsCtrl.onReportItemSelect(item)">
+            </vm-combo-box>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <section ng-include src='reportsCtrl.selectedReport.url' class="white-text" id="reportFilters"
+                     ng-if="reportsCtrl.selectedReport != null"></section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <section id="reportActinButton" ng-if="reportsCtrl.selectedReport != null">
+                <hr class="hr-line">
+                <form action="" method="post" name="reportsCtrl.reportsForm" ng-form-submit novalidate>
+                    <input type="hidden" name="LobId" ng-value="reportsCtrl.reportsForm.LobId" />
+                    <input type="hidden" name="formLibrary" ng-value="reportsCtrl.reportsForm.formLibrary" />
+                    <input type="hidden" name="effectiveDate" value="{{reportsCtrl.reportsForm.effectiveDate}}" />
+                    <input type="hidden" name="jurisdictions" value="{{reportsCtrl.reportsForm.jurisdictions}}" />
+                    <input type="hidden" name="mandatory" value="{{reportsCtrl.reportsForm.mandatory}}" />
+                    <input type="hidden" name="multiState" value="{{reportsCtrl.reportsForm.multiState}}" />
+                    <input type="hidden" name="nonAdmitted" value="{{reportsCtrl.reportsForm.nonAdmitted}}" />
+                    <input type="hidden" name="customerId" value="{{reportsCtrl.reportsForm.customerId}}" />
+                    <input type="hidden" name="formNumber" value="{{reportsCtrl.reportsForm.formNumber}}" />
+                    <input type="hidden" name="admittedNadmitted" value="{{reportsCtrl.reportsForm.admittedNadmitted}}" />
+                    <input type="hidden" name="fromDate" value="{{reportsCtrl.reportsForm.fromDate}}" />
+                    <input type="hidden" name="toDate" value="{{reportsCtrl.reportsForm.toDate}}" />
+                    <input type="hidden" name="tags" value="{{reportsCtrl.reportsForm.tags}}" />
+                    <input type="hidden" name="timeDiff" value="{{reportsCtrl.reportsForm.timeDiff}}" />
+                    <input type="hidden" name="selectedReport" value="{{reportsCtrl.reportsForm.selectedReport}}" />
+                    <input type="hidden" name="action" value="{{reportsCtrl.reportsForm.action}}" />
+                    <div class="row">
+                        <div class="col-xs-8"></div>
+                        <div class="col-xs-4 search-btn-wrapper">
+                            <button id="reportsCtrl.selectedReport.id" type="button" class="btn btn-primary btn-lg pull-right btnRunReport" ng-click="reportsCtrl.submitForm(reportsCtrl.reportsForm)">
+                                {{reportsCtrl.languageStrings.lbl_RUN_REPORT}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
